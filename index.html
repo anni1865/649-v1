@@ -15,10 +15,10 @@
 <!--Filter Area-->
     <div id="filter">
         <h3>Likes Filter</h3>
-        <input class="filter_likes" id="20" type="radio">0-20 Likes</input><br>
-        <input class="filter_likes" id="50" type="radio">20-50 Likes</input><br>
-        <input class="filter_likes" id="100" type="radio">50-100 Likes</input><br>
-        <input class="filter_likes" id="400" type="radio">100+ Likes</input><br>
+        <input class="filter_likes" id="20" type="radio" name="likes">0-20 Likes</input><br>
+        <input class="filter_likes" id="50" type="radio" name="likes">20-50 Likes</input><br>
+        <input class="filter_likes" id="100" type="radio" name="likes">50-100 Likes</input><br>
+        <input class="filter_likes" id="200" type="radio" name="likes">100+ Likes</input><br>
         <h3>Hugs Filter</h3>
         <input class="filter_hugs" id="20hugs" type="checkbox">0-20 Hugs</input><br>
         <input class="filter_hugs" id="50hugs" type="checkbox">20-50 Hugs/input><br>
@@ -41,8 +41,9 @@
 <script>
 // Add Filter
 var likes_filter=0;
+post_board(likes_filter);
 d3.selectAll(".filter_likes").on("change", function() {
-  d3.select(".text").remove();
+  
   var type = this.value;
     if(this.class="filter_likes"){
           if(this.checked){
@@ -55,6 +56,7 @@ d3.selectAll(".filter_likes").on("change", function() {
  });
 //Add Text
 function post_board(likes_filter){
+d3.selectAll(".text").remove();
 d3.csv("data/sample-data-w_topic.csv")
     .row(function(d) { return {  ID: d.ID, 
                                  PostID: d.PostID, 
@@ -70,7 +72,7 @@ d3.csv("data/sample-data-w_topic.csv")
     .get(function(error, rows) { 
       // console.log(rows);
       for(var i=0; i<rows.length;i++){
-            if(rows[i].Likes<likes_filter){
+            if(rows[i].Likes>=likes_filter){
               d3.select("#text_display")
                  .append("p")
                  .attr("class", "text")
