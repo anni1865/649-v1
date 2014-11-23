@@ -1,0 +1,120 @@
+html, body, #map {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font: 10px helvetica,sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+h1,h2{
+  color: #fff;
+  text-align: center;
+}
+h2{
+  font-style: italic;
+  font-weight: 400;
+}
+h3{
+  color: #fff;
+}
+.tip{
+  font-size: 14px;
+  font-color:#fff;
+  background-color: #000;
+  padding: 10px;
+}
+path {
+  stroke: #000;
+  stroke-weight:0.3;
+}
+form{
+  margin:auto;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px #fff dashed;
+  height: 70px;
+  float: right;
+}
+
+input[type="radio"]{
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.radio{
+  margin-top: 10px;
+  font-size: 13px;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+#filter-title{
+  color: #fff;
+}
+#svg1{
+  float: left;
+  width: 54%;
+  margin-top: 0px;
+  padding-bottom:30px; 
+}
+#svg2{
+  float: left;
+  width: 44%;
+  margin-left:2%; 
+}
+.locations, .locations svg {
+  position: absolute;
+}
+
+.locations svg {
+  width: 100px;
+  height: 100px;
+  padding-right: 100px;
+  font: 10px sans-serif;
+}
+
+.locations circle {
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+.button{
+  margin: auto;
+  text-align: center;
+}
+button{
+  border: transparent 2px solid;
+  margin: auto;
+  margin-left: 8px;
+  padding: 4px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #999;
+  color: #222;
+}
+button:hover, button:focus{
+  border: #fff 2px solid; 
+  background: #fff;
+}
+#show-disease-button0{
+background-color:rgb(31, 119, 180);
+}
+#show-disease-button1{
+background-color:rgb(174, 199, 232);
+}
+#show-disease-button2{
+background-color:rgb(255, 127, 14);
+}
+#show-disease-button3{
+background-color:rgb(255, 187, 120);
+}
+#show-disease-button4{
+background-color:rgb(44, 160, 44);
+}
+#show-disease-button5{
+background-color:rgb(152, 223, 138);
+}
+#show-disease-button6{
+background-color:rgb(214, 39, 40);
+}
