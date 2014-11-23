@@ -11,10 +11,24 @@
     <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
-<!-- <h1>Scary Momy Confession Board Topic Data Visualization</h1>
-<h2>Likes</h2> -->
+<h1>Scary Momy Confession Board Topic Data Visualization</h1>
 <!--Filter Area-->
     <div id="filter">
+        <h3>Likes Filter</h3>
+        <input class="filter_likes" id="20" type="radio">0-20 Likes</input><br>
+        <input class="filter_likes" id="50" type="radio">20-50 Likes</input><br>
+        <input class="filter_likes" id="100" type="radio">50-100 Likes</input><br>
+        <input class="filter_likes" id="400" type="radio">100+ Likes</input><br>
+        <h3>Hugs Filter</h3>
+        <input class="filter_hugs" id="20hugs" type="checkbox">0-20 Hugs</input><br>
+        <input class="filter_hugs" id="50hugs" type="checkbox">20-50 Hugs/input><br>
+        <input class="filter_hugs" id="100hugs" type="checkbox">50-100 Hugs</input><br>
+        <input class="filter_hugs" id="400hugs" type="checkbox">100+ Hugs</input><br>
+        <h3>Metoos Filter</h3>
+        <input class="filter_metoos" id="20metoos" type="checkbox">0-20 Me toos</input><br>
+        <input class="filter_metoos" id="50metoos" type="checkbox">20-50 Me toos</input><br>
+        <input class="filter_metoos" id="100metoos" type="checkbox">50-100 Me toos</input><br>
+        <input class="filter_metoos" id="400metoos" type="checkbox">100+ Me toos</input><br>
     </div>
 
 <!--Text Desplay-->
@@ -26,11 +40,21 @@
     </div>
 <script>
 // Add Filter
-// d3.select("#filter"){
-
-// }
-
+var likes_filter=0;
+d3.selectAll(".filter_likes").on("change", function() {
+  d3.select(".text").remove();
+  var type = this.value;
+    if(this.class="filter_likes"){
+          if(this.checked){
+            likes_filter=this.id;
+          }
+          else {likes_filter=0;}
+          console.log(likes_filter);
+          post_board(likes_filter);
+    }
+ });
 //Add Text
+function post_board(likes_filter){
 d3.csv("data/sample-data-w_topic.csv")
     .row(function(d) { return {  ID: d.ID, 
                                  PostID: d.PostID, 
@@ -46,19 +70,21 @@ d3.csv("data/sample-data-w_topic.csv")
     .get(function(error, rows) { 
       // console.log(rows);
       for(var i=0; i<rows.length;i++){
-          d3.select("#text_display")
-             .append("p")
-             .attr("class", "text"+i)
-             .attr("transform", "translate(100,"+i*20+")")
-             .append("text")
-             .style("font-weight", "bold")
-             .style("text-anchor", "left")
-             .text("Post Text: "+rows[i].text)
-             .append("p")
-             .text("Category: "+rows[i].Category + " Likes: "+ rows[i].Likes +" Hugs: "+ rows[i].Hugs + " Me Toos: "+rows[i].MeToos); 
+            if(rows[i].Likes<likes_filter){
+              d3.select("#text_display")
+                 .append("p")
+                 .attr("class", "text")
+                 .attr("transform", "translate(100,"+i*20+")")
+                 .append("text")
+                 .style("font-weight", "bold")
+                 .style("text-anchor", "left")
+                 .text("Post Text: "+rows[i].text)
+                 .append("p")
+                 .text("Category: "+rows[i].Category + " Likes: "+ rows[i].Likes +" Hugs: "+ rows[i].Hugs + " Me Toos: "+rows[i].MeToos); 
+            }
        }
     });
-    
+}   
 
 
 </script>
