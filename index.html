@@ -9,14 +9,28 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="index.css">
-
 </head>
 <body>
-<h1>Scary Momy Confession Board Topic Data Visualization</h1>
-<h2>Likes</h2>
+<!-- <h1>Scary Momy Confession Board Topic Data Visualization</h1>
+<h2>Likes</h2> -->
+<!--Filter Area-->
+    <div id="filter">
+    </div>
 
+<!--Text Desplay-->
+    <div id="text_display">
+    </div>
+
+<!--Topic Visualization-->
+    <div id="topic">
+    </div>
 <script>
+// Add Filter
+// d3.select("#filter"){
 
+// }
+
+//Add Text
 d3.csv("data/sample-data-w_topic.csv")
     .row(function(d) { return {  ID: d.ID, 
                                  PostID: d.PostID, 
@@ -29,9 +43,22 @@ d3.csv("data/sample-data-w_topic.csv")
                                  SentiScore:+d.SentiScore,
                                  Polarity:d.Polarity}; 
     })
-    .get(function(error, rows) { console.log(rows); });
- 
-    console(function(d){return d});
+    .get(function(error, rows) { 
+      // console.log(rows);
+      for(var i=0; i<rows.length;i++){
+          d3.select("#text_display")
+             .append("p")
+             .attr("class", "text"+i)
+             .attr("transform", "translate(100,"+i*20+")")
+             .append("text")
+             .style("font-weight", "bold")
+             .style("text-anchor", "left")
+             .text("Post Text: "+rows[i].text)
+             .append("p")
+             .text("Category: "+rows[i].Category + " Likes: "+ rows[i].Likes +" Hugs: "+ rows[i].Hugs + " Me Toos: "+rows[i].MeToos); 
+       }
+    });
+    
 
 
 </script>
